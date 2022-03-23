@@ -119,7 +119,25 @@ class User {
             res.status(500).send({
                 apiStatus:false,
                 errors:e.message,
-                message:"error in deleting"
+                message:"error in login"
+            })    
+        }
+    }
+    static loginAdmin = async(req,res)=>{
+        try{
+            const user = await userModel.loginAdmin(req.body.email, req.body.password,"admin")
+            const token = await user.generateToken()
+            res.status(200).send({
+                apiStatus:true,
+                data:{user, token},
+                message:"logged in"
+            })
+        }
+        catch(e){
+            res.status(500).send({
+                apiStatus:false,
+                errors:e.message,
+                message:"error in login admin"
             })    
         }
     }
@@ -157,6 +175,12 @@ class User {
             }) 
         }
 
+    }  
+    static profile = async(req, res)=>{
+        res.status(200).send({
+            data:req.user, 
+            apiStatus:true,
+            message:"profile fetched"})
     }    
     static changePass = async(req, res)=>{
         try{
@@ -176,7 +200,15 @@ class User {
             })
         }
     }
-  
+    static profileImg = async(req,res)=>{
+        req.user.image = req.file.path
+        await req.user.save()
+        res.status(200).send({
+            apiStatus:true,
+            data: req.file,
+            message:"uploaded"
+        })
+    }
 }
 
 module.exports = User

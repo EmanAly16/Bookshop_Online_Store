@@ -1,14 +1,25 @@
 const userController = require("../controller/user.controller")
 const router = require("express").Router()
 const auth = require("../middleware/auth")
+const authadmin = require("../middleware/authadmin")
+const upload = require("../middleware/fileUpload")
+
 router.post("/add", userController.add)
 router.post("/login", userController.login)
+router.post("/admin", userController.loginAdmin)
+
 router.post("/logout",auth, userController.logOut)
 router.post("/logoutAll",auth, userController.logOutAll)
+
 router.post("/changePass",auth, userController.changePass)
-router.get('/all', auth, userController.all)
-router.get('/all/:id', auth, userController.single)
-router.delete('/all/:id', auth, userController.del)
-router.patch('/all/:id', auth, userController.edit)
+
+router.post("/me",auth, userController.profile)
+router.get('/all', authadmin, userController.all)
+router.get('/all/:id', authadmin, userController.single)
+router.delete('/all/:id', authadmin, userController.del)
+router.patch('/all/:id', authadmin, userController.edit)
 router.patch('/all', auth, userController.editWithToken)
+
+router.post("/profileImg", auth, upload.single('profile'), userController.profileImg)
+
 module.exports = router

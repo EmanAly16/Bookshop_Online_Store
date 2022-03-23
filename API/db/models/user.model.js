@@ -56,6 +56,8 @@ const userSchema = new mongoose.Schema({
     },
     role:{
         type: String,
+        default:"customer",
+        trim:true,
         enum: ['admin', 'customer'], 
         required: true 
     },
@@ -83,6 +85,14 @@ userSchema.statics.loginUser = async(email, password)=>{
     if(!user) throw new Error("invalid email")
     const matched = await bcrypt.compare(password, user.password)
     if(!matched) throw new Error("invalid upassword")
+    return user
+}
+userSchema.statics.loginAdmin = async(email, password,role)=>{
+    const user = await User.findOne({email:email})
+    if(!user) throw new Error("invalid email")
+    const matched = await bcrypt.compare(password, user.password)
+    if(!matched) throw new Error("invalid upassword")
+    if(user.role!=role)throw new Error("not admin")
     return user
 }
 userSchema.methods.generateToken = async function(){
