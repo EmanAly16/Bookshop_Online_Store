@@ -1,17 +1,182 @@
 const userModel = require("../db/models/user.model")
 class User {
-    static all = async(req, res) => {
-        try {
-            res.send("OK")
-        } catch (e) {
+    static add = async(req, res)=>{
+        try{
+            const user = new userModel(req.body)
+            await user.save()
+            res.status(200).send({
+                apiStatus:true,
+                data:user,
+                message:"user added"
+            })
+        }
+        catch(e){
             res.status(500).send({
-                apiStatus: false,
-                errors: e.message,
-                message: "error in fetching"
+                apiStatus:false,
+                errors:e.message,
+                message:"error in added"
             })
         }
     }
+    static all = async(req, res) => {
+        try{
+            const users = await userModel.find().sort({email:1})
+            res.status(200).send({
+                apiStatus:true,
+                data:users,
+                message:"users fetched"
+            })
+        }
+        catch(e){
+            res.status(500).send({
+                apiStatus:false,
+                errors:e.message,
+                message:"error in fetching"
+            })
+        }
+    }
+    static single = async(req,res)=>{
+        try{
+            const user = await userModel.findById(req.params.id)
+            res.status(200).send({
+                apiStatus:true,
+                data:user,
+                message:"users fetchedone"
+            })
+        }
+        catch(e){
+            res.status(500).send({
+                apiStatus:false,
+                errors:e.message,
+                message:"error in fetchingone"
+            })
+        }
+    }
+    static del = async(req,res)=>{
+        try{
+            const user = await userModel.findByIdAndDelete(req.params.id)
+            res.status(200).send({
+                apiStatus:true,
+                data:user,
+                message:"user deleted"
+            })
+        }
+        catch(e){
+            res.status(500).send({
+                apiStatus:false,
+                errors:e.message,
+                message:"error in deleting"
+            })
+        }
+    }
+    static edit = async(req,res)=>{
+        try{
+            const user = await userModel.findByIdAndUpdate(
+                req.params.id, req.body, {runValidators:true})
+            res.status(200).send({
+                apiStatus:true,
+                data:user,
+                message:"user edited"
+            })
+        }
+        catch(e){
+            res.status(500).send({
+                apiStatus:false,
+                errors:e.message,
+                message:"error in edit"
+            })
+        }
+    }
+    static editWithToken = async(req,res)=>{
+        try{
+            const user = await userModel.findByIdAndUpdate(
+                req.user._id, req.body, {runValidators:true})
+            res.status(200).send({
+                apiStatus:true,
+                data:user,
+                message:"user edittoken "
+            })
+        }
+        catch(e){
+            res.status(500).send({
+                apiStatus:false,
+                errors:e.message,
+                message:"error in edittoken"
+            })
+        }
+    }
+    static login = async(req,res)=>{
+        try{
+            const user = await userModel.loginUser(req.body.email, req.body.password)
+            const token = await user.generateToken()
+            res.status(200).send({
+                apiStatus:true,
+                data:{user, token},
+                message:"logged in"
+            })
+        }
+        catch(e){
+            res.status(500).send({
+                apiStatus:false,
+                errors:e.message,
+                message:"error in deleting"
+            })    
+        }
+    }
+    static logOut = async(req, res)=>{
+        try{
+            req.user.tokens = req.user.tokens.filter(t=>{
+                return t.token!=req.token
+            })
+            await req.user.save()
+            res.status(200).send({
+                apiStatus:true, data:"", message:"logged out"
+            })
+        }
+        catch(e){
+            res.status(500).send({
+                apiStatus:false,
+                errors:e.message,
+                message:"error in logout"
+            }) 
+        }
+    }
+    static logOutAll = async(req, res)=>{
+        try{
+            req.user.tokens = []
+            await req.user.save()
+            res.status(200).send({
+                apiStatus:true, data:"", message:"logout"
+            })
+        }
+        catch(e){
+            res.status(500).send({
+                apiStatus:false,
+                errors:e.message,
+                message:"error in logout"
+            }) 
+        }
 
+    }    
+    static changePass = async(req, res)=>{
+        try{
+            req.user.password = req.body.password
+            await req.user.save()
+            res.status(200).send({
+                apiStatus:true,
+                data:"",
+                message:"changedpass"
+            })
+        }
+        catch(e){
+            res.status(500).send({
+                apiStatus:false,
+                data:"",
+                message:"cannot change"
+            })
+        }
+    }
+  
 }
 
 module.exports = User
