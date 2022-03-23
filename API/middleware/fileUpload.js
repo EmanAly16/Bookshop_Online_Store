@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
 })
 const upload = multer({
     storage,
-    limits:{fileSize:300000000},
+    limits:{fileSize:3000000000},
     fileFilter:function(req, file, cb){
         if(path.extname(file.originalname)!= ".jpg")
             return cb(new Error("invalid file extension"))

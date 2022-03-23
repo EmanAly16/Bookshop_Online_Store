@@ -58,8 +58,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         default:"customer",
         trim:true,
-        enum: ['admin', 'customer'], 
-        required: true 
+        enum: ['admin', 'customer']
     },
     tokens:[{
         token:{
