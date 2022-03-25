@@ -103,5 +103,10 @@ userSchema.methods.generateToken = async function() {
     await user.save()
     return token
 }
+userSchema.virtual("userBooks", {
+    ref:"Book",
+    localField:"_id",
+    foreignField:"userId"
+})
 const User = mongoose.model('User', userSchema)
 module.exports = User

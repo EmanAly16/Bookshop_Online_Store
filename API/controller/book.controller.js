@@ -17,6 +17,16 @@ class Book {
             })
         }
     }
+    static myBooks = async(req,res)=>{
+        try{
+            await req.user.populate("userBooks")
+            res.status(200).send({data: req.user.userBooks})
+        }
+        catch(e){
+            res.status(500).send({erros:e.message})
+        }
+    }
+
     static all = async(req, res) => {
         try {
             const book = await bookModel.find()
@@ -35,7 +45,8 @@ class Book {
     }
     static single = async(req, res) => {
         try {
-            const book = await bookModel.findById(req.body.id)
+            const _id = req.params.id
+            const book = await bookModel.findOne({_id,userId:req.user._id})
             res.status(200).send({
                 apiStatus: true,
                 data: book,
@@ -51,8 +62,8 @@ class Book {
     }
     static del = async(req, res) => {
         try {
-            //  const book = await bookModel.findByIdAndDelete(req.body.id)
-            const book = await bookModel.findOneAndDelete({ _id: req.params.id, user: req.user._id })
+            const _id = req.params.id
+            const book = await bookModel.findOneAndDelete({_id, userId: req.user._id })
             res.status(200).send({
                 apiStatus: true,
                 data: book,
@@ -68,12 +79,10 @@ class Book {
     }
     static edit = async(req, res) => {
         try {
-            const books = await bookModel.find()
-            const book = await bookModel.findByIdAndUpdate(
-                req.params.id, req.body, { runValidators: true })
+            const book = await bookModel.findByIdAndUpdate({_id:req.params.id,userId:req.user._id}, req.body, { runValidators: true })
             res.status(200).send({
                 apiStatus: true,
-                data: { book, books },
+                data: book,
                 message: "book edited"
             })
         } catch (e) {
