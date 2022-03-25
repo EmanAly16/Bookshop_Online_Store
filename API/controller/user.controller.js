@@ -1,4 +1,5 @@
 const userModel = require("../db/models/user.model")
+const bookModel = require("../db/models/book.model")
 
 class User {
     static add = async(req, res) => {
@@ -206,11 +207,15 @@ class User {
     }
     static addOrder = async(req, res) => {
         try {
-            const user = await userModel.findByIdAndUpdate(
-                req.user._id, req.body.ordrDetails)
-            console.log(req.body)
-                // user.orders.push(req.body)
-                // await user.save()
+
+            const resid = await bookModel.findOne({ 'title': req.body.name })
+            if (!resid)
+                throw new Error("Not a book")
+                    //console.log(resid)
+            const user = await userModel.findByIdAndUpdate(req.user._id, { $push: { orders: { $each: [{ "name": req.body.name, "id": resid._id }] } } }, { runValidators: true })
+
+            console.log(req.user)
+            await user.save()
             res.status(200).send({
                 apiStatus: true,
                 data: user,

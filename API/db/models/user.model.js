@@ -65,10 +65,10 @@ const userSchema = new mongoose.Schema({
             type: String
         }
     }],
-    orders: [{
-        price: { type: Number },
-        ordrDetails: { type: String }
-    }]
+    orders: {
+        type: Array,
+        default: ''
+    }
 }, { timestamps: true })
 userSchema.methods.toJSON = function() {
     const user = this.toObject()
