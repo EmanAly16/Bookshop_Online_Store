@@ -2,7 +2,7 @@ const bookModel = require("../db/models/book.model")
 class Book {
     static add = async(req, res) => {
         try {
-            const book = new bookModel(req.body)
+            const book = new bookModel({ userId: req.user._id, ...req.body })
             await book.save()
             res.status(200).send({
                 apiStatus: true,
@@ -46,6 +46,41 @@ class Book {
                 apiStatus: false,
                 errors: e.message,
                 message: "error in fetching one"
+            })
+        }
+    }
+    static del = async(req, res) => {
+        try {
+            //  const book = await bookModel.findByIdAndDelete(req.body.id)
+            const book = await bookModel.findOneAndDelete({ _id: req.params.id, user: req.user._id })
+            res.status(200).send({
+                apiStatus: true,
+                data: book,
+                message: "book deleted"
+            })
+        } catch (e) {
+            res.status(500).send({
+                apiStatus: false,
+                errors: e.message,
+                message: "error in deleting"
+            })
+        }
+    }
+    static edit = async(req, res) => {
+        try {
+            const books = await bookModel.find()
+            const book = await bookModel.findByIdAndUpdate(
+                req.params.id, req.body, { runValidators: true })
+            res.status(200).send({
+                apiStatus: true,
+                data: { book, books },
+                message: "book edited"
+            })
+        } catch (e) {
+            res.status(500).send({
+                apiStatus: false,
+                errors: e.message,
+                message: "error in edit"
             })
         }
     }

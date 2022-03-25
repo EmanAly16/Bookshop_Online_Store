@@ -1,6 +1,11 @@
 const mongoose = require("mongoose")
 const validator = require("validator")
 const bookSchema = new mongoose.Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true
+    },
     title: {
         type: String,
         trim: true,
@@ -20,10 +25,9 @@ const bookSchema = new mongoose.Schema({
         trim: true,
         required: true
     },
-    file: {
+    url: {
         type: String,
-        trim: true,
-        required: () => this.bookType == "file"
+        trim: true
     }
 }, { timestamps: true })
 

@@ -1,5 +1,4 @@
 const userController = require("../controller/user.controller")
-const bookController = require("../controller/book.controller")
 
 const router = require("express").Router()
 const auth = require("../middleware/auth")
@@ -23,12 +22,10 @@ router.get('/all', authadmin, userController.all)
 router.get('/all/:id', authadmin, userController.single)
 router.delete('/all/:id', authadmin, userController.del)
 router.patch('/all/:id', authadmin, userController.edit)
-router.post('/book/add', authadmin, bookController.add)
 
 router.patch('/all', auth, userController.editWithToken)
 
-router.get('/book', auth, bookController.all)
-router.post('/book/show', auth, bookController.single)
+
 router.post('/book/buy', auth, userController.addOrder)
 
 
