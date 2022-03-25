@@ -67,7 +67,7 @@ const userSchema = new mongoose.Schema({
     }],
     orders: {
         type: Array,
-        default: ''
+        // default: ''
     }
 }, { timestamps: true })
 userSchema.methods.toJSON = function() {

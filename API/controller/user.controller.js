@@ -41,13 +41,13 @@ class User {
             res.status(200).send({
                 apiStatus: true,
                 data: user,
-                message: "users fetchedone"
+                message: "user fetche done"
             })
         } catch (e) {
             res.status(500).send({
                 apiStatus: false,
                 errors: e.message,
-                message: "error in fetchingone"
+                message: "error in fetching one"
             })
         }
     }
@@ -214,7 +214,7 @@ class User {
                     //console.log(resid)
             const user = await userModel.findByIdAndUpdate(req.user._id, { $push: { orders: { $each: [{ "name": req.body.name, "id": resid._id }] } } }, { runValidators: true })
 
-            console.log(req.user)
+            //  console.log(req.user)
             await user.save()
             res.status(200).send({
                 apiStatus: true,
@@ -229,6 +229,7 @@ class User {
             })
         }
     }
+
 
 }
 

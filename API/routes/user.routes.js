@@ -16,16 +16,20 @@ router.post("/logoutAll", auth, userController.logOutAll)
 router.post("/changePass", auth, userController.changePass)
 
 router.post("/me", auth, userController.profile)
+router.post("/profileImg", auth, upload.single('profile'), userController.profileImg)
+
+
 router.get('/all', authadmin, userController.all)
 router.get('/all/:id', authadmin, userController.single)
 router.delete('/all/:id', authadmin, userController.del)
 router.patch('/all/:id', authadmin, userController.edit)
-router.patch('/all', auth, userController.editWithToken)
-router.get('/book', auth, bookController.all)
-router.post('/book/buy', auth, userController.addOrder)
-
 router.post('/book/add', authadmin, bookController.add)
 
-router.post("/profileImg", auth, upload.single('profile'), userController.profileImg)
+router.patch('/all', auth, userController.editWithToken)
+
+router.get('/book', auth, bookController.all)
+router.post('/book/show', auth, bookController.single)
+router.post('/book/buy', auth, userController.addOrder)
+
 
 module.exports = router
