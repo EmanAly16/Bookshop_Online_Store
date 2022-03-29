@@ -1,3 +1,4 @@
+import { HomeComponent } from './components/pages/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './components/pages/user/admin/admin.component';
@@ -9,7 +10,7 @@ import { RegisterComponent } from './components/pages/user/register/register.com
 import { SingleuserComponent } from './components/pages/user/singleuser/singleuser.component';
 
 const routes: Routes = [
-  {path:"",component:LoginComponent},
+  {path:"",component:HomeComponent},
   {path:"user", children:[
    { path:"add",component:RegisterComponent},
    {path:"profile", component:ProfileComponent},

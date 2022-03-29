@@ -13,6 +13,7 @@ import { ProfileComponent } from './components/pages/user/profile/profile.compon
 import { RegisterComponent } from './components/pages/user/register/register.component';
 import { SingleuserComponent } from './components/pages/user/singleuser/singleuser.component';
 import { AdminComponent } from './components/pages/user/admin/admin.component';
+import { HomeComponent } from './components/pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AdminComponent } from './components/pages/user/admin/admin.component';
     ProfileComponent,
     RegisterComponent,
     SingleuserComponent,
-    AdminComponent
+    AdminComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
