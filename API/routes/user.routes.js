@@ -6,8 +6,10 @@ const authadmin = require("../middleware/authadmin")
 const upload = require("../middleware/fileUpload")
 
 router.post("/add", userController.add)
+router.post("/admin", userController.add)
+
 router.post("/login", userController.login)
-router.post("/admin", userController.loginAdmin)
+    //router.post("/admin", userController.loginAdmin)
 
 router.post("/logout", auth, userController.logOut)
 router.post("/logoutAll", auth, userController.logOutAll)
@@ -19,14 +21,14 @@ router.post("/profileImg", auth, upload.single('profile'), userController.profil
 
 
 router.get('/all', authadmin, userController.all)
-router.get('/all/:id', authadmin, userController.single)
+router.get('/single/:id', authadmin, userController.single)
 router.delete('/all/:id', authadmin, userController.del)
 router.patch('/all/:id', authadmin, userController.edit)
 
 router.patch('/all', auth, userController.editWithToken)
 
 
-router.post('/book/buy', auth, userController.addOrder)
+router.post('/addOrder', auth, userController.addOrder)
 
 
 module.exports = router

@@ -15,7 +15,7 @@ const routes: Routes = [
    { path:"add",component:RegisterComponent},
    {path:"me", component:ProfileComponent},
    {path:"all", component:AllusersComponent},
-   {path:"all/:id", component:SingleuserComponent},
+   {path:"single/:id", component:SingleuserComponent},
    {path:"edit/:id", component:EditprofileComponent},
    {path:"admin",component:AdminComponent},
    { path:"login",component:LoginComponent}

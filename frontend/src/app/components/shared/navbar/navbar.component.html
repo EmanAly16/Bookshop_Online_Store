@@ -5,7 +5,7 @@
                 <a class="nav-link" aria-current="page" routerLink="/user/login" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="!_user.isLoggedIn">LOGIN</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" aria-current="page" routerLink="/user/register" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="!_user.isLoggedIn">register</a>
+                <a class="nav-link" aria-current="page" routerLink="/user/add" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="!_user.isLoggedIn">register</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" aria-current="page" routerLink="/user/me" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="_user.isLoggedIn">profile</a>
@@ -17,7 +17,7 @@
             <li class="nav-item">
                 <a class="nav-link" aria-current="page" *ngIf="_user.isLoggedIn">
           {{_user.userData.name}}
-          <button class="btn btn-danger">Logout</button>
+          <button class="btn btn-danger"  routerLink="/" (click)="logout()" *ngIf="_user.isLoggedIn">Logout</button>
         </a>
             </li>
         </ul>

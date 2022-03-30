@@ -5,9 +5,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  me(arg0: string) {
-    throw new Error('Method not implemented.');
-  }
+  // me(arg0: string) {
+  //   throw new Error('Method not implemented.');
+  // }
   public userData = {name:""}
   public isLoggedIn = false
   host = "http://localhost:3000/user/"
@@ -21,10 +21,22 @@ export class UserService {
     return this._http.post(`${this.host}login`, data)
   }
 
+  registerAdmin(data:any):Observable<any>{
+    return this._http.post(`${this.host}admin`, data)
+  }
+
   allUser():Observable<any>{
     return this._http.get(`${this.host}all`)
   }
+
   profile():Observable<any>{
     return this._http.post(`${this.host}me`,null)
   }
+  authService():Observable<any>{
+    return this._http.get(`${this.host}`)
+  }
+  singleUser(id:string):Observable<any>{
+    return this._http.get(`${this.host}single/${id}`)
+  }
+
 }
