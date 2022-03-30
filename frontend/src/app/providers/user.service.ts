@@ -8,7 +8,7 @@ export class UserService {
   // me(arg0: string) {
   //   throw new Error('Method not implemented.');
   // }
-  public userData = {name:""}
+  public userData = {name:"",role:""}
   public isLoggedIn = false
   host = "http://localhost:3000/user/"
   constructor(private _http:HttpClient) {}

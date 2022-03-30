@@ -10,7 +10,7 @@
             <li class="nav-item">
                 <a class="nav-link" aria-current="page" routerLink="/user/me" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="_user.isLoggedIn">profile</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="  _user.userData.role=='admin'">
                 <a class="nav-link" aria-current="page" routerLink="/user/all" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="_user.isLoggedIn">all users</a>
             </li>
 
@@ -22,6 +22,6 @@
             </li>
         </ul>
 
-    </div>
 
+    </div>
 </nav>
