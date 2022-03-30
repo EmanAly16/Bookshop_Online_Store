@@ -13,7 +13,7 @@ const routes: Routes = [
   {path:"",component:HomeComponent},
   {path:"user", children:[
    { path:"add",component:RegisterComponent},
-   {path:"profile", component:ProfileComponent},
+   {path:"me", component:ProfileComponent},
    {path:"all", component:AllusersComponent},
    {path:"all/:id", component:SingleuserComponent},
    {path:"edit/:id", component:EditprofileComponent},

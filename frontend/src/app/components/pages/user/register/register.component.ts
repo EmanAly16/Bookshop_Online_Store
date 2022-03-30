@@ -25,6 +25,16 @@ export class RegisterComponent implements OnInit {
     let pStatus = this.checkPhone(this.userData.phone)
     if(register.valid&&pStatus){
       console.log(register.value)
+      this._user.registerUser(register.value).subscribe(
+        data=> {
+          console.log(data)
+        },
+        (e)=>{
+        },
+        ()=>{
+          register.resetForm()
+        }
+      )
     }
   }
   checkPhone(pNum:string):boolean{
