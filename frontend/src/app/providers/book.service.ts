@@ -12,5 +12,7 @@ export class BookService {
   bookAdd(data:any):Observable<any>{
     return this._http.post(`${this.host}add`, data)
   }
-
+  allBook():Observable<any>{
+    return this._http.get(`${this.host}allbook`)
+  }
 }
