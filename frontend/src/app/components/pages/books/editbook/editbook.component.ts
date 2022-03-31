@@ -7,39 +7,29 @@ import { BookService } from 'src/app/providers/book.service';
   styleUrls: ['./editbook.component.css']
 })
 export class EditbookComponent implements OnInit {
-  bookData:any = {
-    title:"",
-    description:"",
-    url:"",
-    img:"",
-    auther:""
-  }
+
+  data:any={}
 
   constructor(private _book:BookService,private _route:Router, private _router:ActivatedRoute) { }
-_id:string=this._router.snapshot.params['id']
 
-getSingleBook(){
-  this._book.getSingleBook(this._router.snapshot.params['id']).subscribe({
-   // bookData=>this.bookData=bookData
-    next:(res:any)=>{
-     console.log(res)
-     this.bookData = res
-    },
-    error:(err:any) =>{
-      console.log(err)
-    }
-  })
-}
 
   bookEdit(data:any){
-    this._book.updateBook(this._id,this.bookData).subscribe({
+    this._book.updateBook(this._router.snapshot.params['id'],this.data.data).subscribe({
       next:()=>{
-        console.log(this.bookData)
-        this._route.navigateByUrl('/user/me')
+        console.log(this.data.data)
+        this._book.bookData=this.data.data
+        this._route.navigateByUrl('book/allbook')
+
       }
     })
   }
   ngOnInit(): void {
-    this.getSingleBook()
+
+    console.log(this._book)
+
+    this._book.getSingleBook(this._router.snapshot.params['id']).subscribe(
+      data=>this.data=data,
+      (e)=>this._route.navigateByUrl('book/allbook')
+    )
   }
 }

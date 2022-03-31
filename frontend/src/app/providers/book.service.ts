@@ -1,3 +1,4 @@
+import { Book } from './../models/book';
 import { Injectable } from '@angular/core';
 import{HttpClient}from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -5,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BookService {
-  public userData = {title:""}
+  public bookData = {title:""}
+
   host = "http://localhost:3000/book/"
   constructor(private _http:HttpClient) {}
 

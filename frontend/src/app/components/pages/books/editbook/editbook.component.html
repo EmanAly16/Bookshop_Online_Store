@@ -1,21 +1,22 @@
 <h2 class="text-primary text-center my-2">Edit my Book</h2>
 <form #edit="ngForm" (ngSubmit)="bookEdit(edit)">
-    <div class="mb-3">
-        <input class="form-control" name="title" placeholder="title" #title="ngModel" [(ngModel)]="bookData.title">
+    <div class=" mb-3 ">
+        <input class="form-control" name="title" placeholder="title" [(ngModel)]="data.data.title">
     </div>
-    <!--< <div class=" mb-3 ">
-        <input type="text " class="form-control " name="description " placeholder="description " #descrition="ngModel " ngModel>
-        </div>
-        <div class="mb-3 ">
-            <input class="form-control " name="auther " placeholder="auther " #auther="ngModel " ngModel>
-        </div>
-        <div class="mb-3 ">
-            <input type="url " class="form-control " name="url " placeholder="url " #url="ngModel " ngModel>
-        </div>
-        <div class="mb-3 ">
-            <input type="file " class="form-control " name="img " placeholder="img " #img="ngModel " ngModel>
-        </div>
-        <div class="mb-3 ">
-            <button class="btn btn-primary ">Edit Book</button>
-        </div>-->
+
+    <div class=" mb-3 ">
+        <input type="text" class="form-control" name="description" placeholder="description" [(ngModel)]="data.data.description" ngModel>
+    </div>
+    <div class="mb-3">
+        <input class="form-control" name="auther" placeholder="auther" [(ngModel)]="data.data.auther" ngModel>
+    </div>
+    <div class="mb-3">
+        <input type="url" class="form-control" name="url" placeholder="url" [(ngModel)]="data.data.url" ngModel>
+    </div>
+    <div class="mb-3">
+        <input type="file" class="form-control" name="img" placeholder="img" [(ngModel)]="data.data.img" ngModel>
+    </div>
+    <div class="mb-3">
+        <button class="btn btn-primary">Edit Book</button>
+    </div>
 </form>
