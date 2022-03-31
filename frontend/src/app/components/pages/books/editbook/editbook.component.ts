@@ -11,6 +11,7 @@ export class EditbookComponent implements OnInit {
   data:any={}
 
   constructor(private _book:BookService,private _route:Router, private _router:ActivatedRoute) { }
+  myFile :any = null
 
 
   bookEdit(data:any){
@@ -22,6 +23,19 @@ export class EditbookComponent implements OnInit {
 
       }
     })
+  }
+  onUploadFile(event:any){
+    this.myFile = event.target.files[0]
+  }
+  handleUpload(){
+    if(this.myFile!=null){
+    const myForm = new FormData()
+    myForm.append("profile", this.myFile, this.myFile.name)
+    this._book.uploadImg(myForm).subscribe(
+      (dataimg)=>{console.log(dataimg)},
+      (e)=> {console.log(e)},
+      ()=>{}
+    )}
   }
   ngOnInit(): void {
 

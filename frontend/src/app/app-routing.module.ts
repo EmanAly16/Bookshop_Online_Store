@@ -27,7 +27,8 @@ const routes: Routes = [
   {path:"book", children:[
     { path:"add",component:AddbookComponent},
     {path:"allbook",component:ShowbookComponent},
-    {path:"edit/:id",component:EditbookComponent}
+    {path:"edit/:id",component:EditbookComponent},
+  //  {path:"delet/:id",component:ShowbookComponent}
 
    ]}
 ];

@@ -17,13 +17,12 @@ class Book {
             })
         }
     }
-    static myBooks = async(req,res)=>{
-        try{
+    static myBooks = async(req, res) => {
+        try {
             await req.user.populate("userBooks")
-            res.status(200).send({data: req.user.userBooks})
-        }
-        catch(e){
-            res.status(500).send({erros:e.message})
+            res.status(200).send({ data: req.user.userBooks })
+        } catch (e) {
+            res.status(500).send({ erros: e.message })
         }
     }
 
@@ -46,7 +45,7 @@ class Book {
     static single = async(req, res) => {
         try {
             const _id = req.params.id
-            const book = await bookModel.findOne({_id,userId:req.user._id})
+            const book = await bookModel.findOne({ _id, userId: req.user._id })
             res.status(200).send({
                 apiStatus: true,
                 data: book,
@@ -63,7 +62,7 @@ class Book {
     static del = async(req, res) => {
         try {
             const _id = req.params.id
-            const book = await bookModel.findOneAndDelete({_id, userId: req.user._id })
+            const book = await bookModel.findOneAndDelete({ _id, userId: req.user._id })
             res.status(200).send({
                 apiStatus: true,
                 data: book,
@@ -79,7 +78,7 @@ class Book {
     }
     static edit = async(req, res) => {
         try {
-            const book = await bookModel.findByIdAndUpdate({_id:req.params.id,userId:req.user._id}, req.body, { runValidators: true })
+            const book = await bookModel.findByIdAndUpdate({ _id: req.params.id, userId: req.user._id }, req.body, { runValidators: true })
             res.status(200).send({
                 apiStatus: true,
                 data: book,
@@ -92,6 +91,15 @@ class Book {
                 message: "error in edit"
             })
         }
+    }
+    static profileImg = async(req, res) => {
+        req.book.img = req.file.path
+        await req.book.save()
+        res.status(200).send({
+            apiStatus: true,
+            data: req.file,
+            message: "uploaded"
+        })
     }
 }
 

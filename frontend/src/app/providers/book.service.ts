@@ -23,5 +23,12 @@ export class BookService {
   getSingleBook(id:any):Observable<any>{
     return this._http.get(`${this.host}showbook/${id}`)
   }
+  uploadImg(data:any):Observable<any>{
+    return this._http.post(`${this.host}profileImg`, data)
+  }
+  deleteBook(id:any):Observable<any>{
+    return this._http.delete(`${this.host}delet/${id}`)
+  }
+
 }
 
