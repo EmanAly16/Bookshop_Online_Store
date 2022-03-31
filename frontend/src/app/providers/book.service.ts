@@ -15,4 +15,11 @@ export class BookService {
   allBook():Observable<any>{
     return this._http.get(`${this.host}allbook`)
   }
+  updateBook(id:string,data:any):Observable<any>{
+    return this._http.patch(`${this.host}edit/${id}`,data)
+  }
+  getSingleBook(id:any):Observable<any>{
+    return this._http.get(`${this.host}showbook/${id}`)
+  }
 }
+

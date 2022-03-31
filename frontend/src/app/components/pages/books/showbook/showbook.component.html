@@ -1,15 +1,13 @@
 <section style="background-color: #eee;">
-    <div class="container py-5">
-
-        <div class="row col-md-12" *ngFor="let item of data.data">
-            <div class="card col-md-4" style="width: 18rem;">
+    <div class="container py-5 ">
+        <div class="row  m-2" *ngFor="let item of data.data">
+            <div class="card " style="width: 18rem;">
                 <img src={{item.img}} class=" card-img-top " alt="... ">
                 <div class="card-body ">
                     <h6 class="card-text ">{{item.title}}</h6>
                     <h6>{{item.auth}} </h6>
                     <p>{{item.url}}</p>
                     <p>{{item.description}}</p>
-
                 </div>
             </div>
         </div>
