@@ -15,6 +15,9 @@ import { RegisterComponent } from './components/pages/user/register/register.com
 import { SingleuserComponent } from './components/pages/user/singleuser/singleuser.component';
 import { AdminComponent } from './components/pages/user/admin/admin.component';
 import { HomeComponent } from './components/pages/home/home.component';
+import { AddbookComponent } from './components/pages/books/addbook/addbook.component';
+import { EditbookComponent } from './components/pages/books/editbook/editbook.component';
+import { ShowbookComponent } from './components/pages/books/showbook/showbook.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { HomeComponent } from './components/pages/home/home.component';
     RegisterComponent,
     SingleuserComponent,
     AdminComponent,
-    HomeComponent
+    HomeComponent,
+    AddbookComponent,
+    EditbookComponent,
+    ShowbookComponent
   ],
   imports: [
     BrowserModule,

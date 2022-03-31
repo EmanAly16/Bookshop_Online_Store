@@ -8,6 +8,7 @@ import { LoginComponent } from './components/pages/user/login/login.component';
 import { ProfileComponent } from './components/pages/user/profile/profile.component';
 import { RegisterComponent } from './components/pages/user/register/register.component';
 import { SingleuserComponent } from './components/pages/user/singleuser/singleuser.component';
+import { AddbookComponent } from './components/pages/books/addbook/addbook.component';
 
 const routes: Routes = [
   {path:"",component:HomeComponent},
@@ -20,7 +21,11 @@ const routes: Routes = [
    {path:"admin",component:AdminComponent},
    { path:"login",component:LoginComponent}
 
-  ]}
+  ]},
+  {path:"book", children:[
+    { path:"add",component:AddbookComponent}
+
+   ]}
 ];
 
 @NgModule({
