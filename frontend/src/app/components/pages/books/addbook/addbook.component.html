@@ -1,19 +1,40 @@
 <h2 class="text-primary text-center my-2">Add my Book</h2>
+<div class="h4">{{msg}}</div>
 <form #register="ngForm" (ngSubmit)="bookAdd(register)">
     <div class="mb-3">
         <input class="form-control" name="title" placeholder="title" #title="ngModel" ngModel>
     </div>
-    <div class="mb-3 ">
-        <input type="text" class="form-control " name="description" placeholder="description " #descrition="ngModel" ngModel>
+    <div class="alert alert-danger my-2" *ngIf="title.invalid&& (title.dirty || register.submitted)">
+        <li *ngIf="title.errors?.['required']">* required</li>
+        <li *ngIf="title.errors?.['minlength']">* minimum chars is 3</li>
     </div>
     <div class="mb-3 ">
-        <input class="form-control " name="auther" placeholder="auther" #auther="ngModel" ngModel>
+        <input type="text" class="form-control" name="description" placeholder="description" #description="ngModel" required minlength="3" ngModel>
+    </div>
+    <div class="alert alert-danger my-2" *ngIf="description.invalid&& (description.dirty || register.submitted)">
+        <li *ngIf="description.errors?.['required']">* required</li>
+        <li *ngIf="description.errors?.['minlength']">* minimum chars is 3</li>
     </div>
     <div class="mb-3 ">
-        <input type="url" class="form-control " name="url" placeholder="url" #url="ngModel" ngModel>
+        <input class="form-control " name="auther" placeholder="auther" #auther="ngModel" required minlength="3" ngModel>
+    </div>
+    <div class="alert alert-danger my-2" *ngIf="auther.invalid&& (auther.dirty || register.submitted)">
+        <li *ngIf="auther.errors?.['required']">* required</li>
+        <li *ngIf="auther.errors?.['minlength']">* minimum chars is 3</li>
     </div>
     <div class="mb-3 ">
-        <input type="text" class="form-control " name="img" placeholder="image url" #img="ngModel" ngModel>
+        <input type="url" class="form-control " name="url" placeholder="url" #url="ngModel" required url ngModel>
+    </div>
+    <div class="alert alert-danger my-2" *ngIf="url.invalid&& (url.dirty || register.submitted)">
+        <li *ngIf="url.errors?.['required']">* required</li>
+        <li *ngIf="url.errors?.['url']">* not url</li>
+    </div>
+    <div class="mb-3 ">
+        <input type="url" class="form-control " name="img" placeholder="image url" required url #img="ngModel" ngModel>
+    </div>
+    <div class="alert alert-danger my-2" *ngIf="img.invalid&& (img.dirty || register.submitted)">
+        <li *ngIf="img.errors?.['required']">* required</li>
+        <li *ngIf="img.errors?.['url']">* not image</li>
     </div>
     <div class="mb-3 ">
         <button class="btn btn-primary ">Add Book</button>

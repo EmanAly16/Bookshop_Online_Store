@@ -7,7 +7,6 @@ import { BookService } from 'src/app/providers/book.service';
   styleUrls: ['./editbook.component.css']
 })
 export class EditbookComponent implements OnInit {
-
   data:any={}
 
   constructor(public _book:BookService,private _route:Router, private _router:ActivatedRoute) { }

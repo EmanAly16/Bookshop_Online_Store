@@ -8,7 +8,7 @@ import { BookService } from 'src/app/providers/book.service';
   styleUrls: ['./addbook.component.css']
 })
 export class AddbookComponent implements OnInit {
-
+msg=""
   constructor(private _book:BookService,public _router:Router) { }
 
   ngOnInit(): void {
