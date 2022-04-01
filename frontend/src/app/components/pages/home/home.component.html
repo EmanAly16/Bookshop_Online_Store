@@ -9,82 +9,24 @@
 
         <div class="tm-gallery">
             <div class="row">
-                <figure class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                    <a href="preview.html">
-                        <div class="tm-gallery-item-overlay">
-                            <img src="../../../../assets/image-02.jpg" alt="Image" class="img-fluid tm-img-center">
-                        </div>
+                <figure class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item" *ngFor="let item of data.data">
+                    <a routerLink="user/login">
+                        <img [src]=item.img class=" card-img-top " alt="... ">
 
-                        <p class="tm-figcaption">Nam vitae odio</p>
-                    </a>
-                </figure>
-                <figure class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                    <a href="preview.html">
-                        <div class="tm-gallery-item-overlay">
-                            <img src="../../../../assets/image-03.jpg" alt="Image" class="img-fluid tm-img-center">
+                        <div class="card-body ">
+                            <h6 class="card-text ">{{item.title}}</h6>
+                            <br>
+                            <p>Author: {{item.auther}} </p>
+                            <p>Description: {{item.description}}</p>
+
                         </div>
-                        <p class="tm-figcaption">Integer ornare</p>
                     </a>
                 </figure>
-                <figure class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                    <a href="preview.html">
-                        <div class="tm-gallery-item-overlay">
-                            <img src="../../../../assets/image-04.jpg" alt="Image" class="img-fluid tm-img-center">
-                        </div>
-                        <p class="tm-figcaption">Cras non augue</p>
-                    </a>
-                </figure>
-                <figure class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                    <a href="preview.html">
-                        <div class="tm-gallery-item-overlay">
-                            <img src="../../../../assets/image-05.jpg" alt="Image" class="img-fluid tm-img-center">
-                        </div>
-                        <p class="tm-figcaption">Dolor lacus</p>
-                    </a>
-                </figure>
-                <figure class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                    <a href="preview.html">
-                        <div class="tm-gallery-item-overlay">
-                            <img src="../../../../assets/image-06.jpg" alt="Image" class="img-fluid tm-img-center">
-                        </div>
-                        <p class="tm-figcaption">Quisque velit</p>
-                    </a>
-                </figure>
-                <figure class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                    <a href="preview.html">
-                        <div class="tm-gallery-item-overlay">
-                            <img src="../../../../assets/image-07.jpg" alt="Image" class="img-fluid tm-img-center">
-                        </div>
-                        <p class="tm-figcaption">Suspendisse suscipit</p>
-                    </a>
-                </figure>
-                <figure class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                    <a href="preview.html">
-                        <div class="tm-gallery-item-overlay">
-                            <img src="../../../../assets/image-08.jpg" alt="Image" class="img-fluid tm-img-center">
-                        </div>
-                        <p class="tm-figcaption">Facilisis justo</p>
-                    </a>
-                </figure>
-                <figure class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                    <a href="preview.html">
-                        <div class="tm-gallery-item-overlay">
-                            <img src="../../../../assets/image-01.jpg" alt="Image" class="img-fluid tm-img-center">
-                        </div>
-                        <p class="tm-figcaption">Vivamus facilisis</p>
-                    </a>
-                </figure>
+
             </div>
         </div>
 
-        <nav class="tm-gallery-nav">
-            <ul class="nav justify-content-center">
-                <li class="nav-item"><a class="nav-link active" href="#">1</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">2</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">3</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">4</a></li>
-            </ul>
-        </nav>
+
     </section>
 
     <section class="media tm-highlight tm-highlight-w-icon">

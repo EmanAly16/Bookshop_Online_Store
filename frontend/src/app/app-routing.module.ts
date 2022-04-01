@@ -11,25 +11,25 @@ import { SingleuserComponent } from './components/pages/user/singleuser/singleus
 import { AddbookComponent } from './components/pages/books/addbook/addbook.component';
 import { ShowbookComponent } from './components/pages/books/showbook/showbook.component';
 import { EditbookComponent } from './components/pages/books/editbook/editbook.component';
-import { NotAuthGuard } from './providers/guards/not-auth.guard';
+//import { NotAuthGuard } from './providers/guards/not-auth.guard';
 
 const routes: Routes = [
   {path:"",component:HomeComponent},
   {path:"user", children:[
-   { path:"add",component:RegisterComponent,canActivate:[NotAuthGuard]},
-   {path:"me", component:ProfileComponent,canActivate:[NotAuthGuard]},
-   {path:"all", component:AllusersComponent,canActivate:[NotAuthGuard]},
-   {path:"single/:id", component:SingleuserComponent,canActivate:[NotAuthGuard]},
-   {path:"edit/:id", component:EditprofileComponent,canActivate:[NotAuthGuard]},
+   { path:"add",component:RegisterComponent},
+   {path:"me", component:ProfileComponent},
+   {path:"all", component:AllusersComponent},
+   {path:"single/:id", component:SingleuserComponent},
+   {path:"edit/:id", component:EditprofileComponent},
    {path:"admin",component:AdminComponent},
    { path:"login",component:LoginComponent}
 
   ]},
   {path:"book", children:[
-    { path:"add",component:AddbookComponent, canActivate:[NotAuthGuard]},
+    { path:"add",component:AddbookComponent},
     {path:"allbook",component:ShowbookComponent},
-    {path:"edit/:id",component:EditbookComponent, canActivate:[NotAuthGuard]},
-  //  {path:"delet/:id",component:ShowbookComponent}
+    {path:"edit/:id",component:EditbookComponent},
+    {path:"delet/:id",component:ShowbookComponent}
 
    ]}
 ];

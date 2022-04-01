@@ -324,7 +324,7 @@
                         }],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\r\n    \"title\":\"node js\",\r\n    \"description\":\"language programming\",\r\n    \"auther\":\"samar\",\r\n    \"url\":\"https://en.wikipedia.org/wiki/Book\"\r\n}",
+                            "raw": "{\r\n    \"title\":\"node js\",\r\n    \"description\":\"language programming\",\r\n    \"auther\":\"samar\",\r\n   \"img\":\"http://images.amazon.com/images/P/0596004478.01._PE30_PI_SCMZZZZZZZ_.jpg\",\r\n  \"url\":\"https://en.wikipedia.org/wiki/Book\"\r\n}",
                             "options": {
                                 "raw": {
                                     "language": "json"
