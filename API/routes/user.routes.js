@@ -28,7 +28,7 @@ router.patch('/all/:id', authadmin, userController.edit)
 router.patch('/all', auth, userController.editWithToken)
 
 
-router.post('/addOrder', auth, userController.addOrder)
+router.post('/addOrder/:id', auth, userController.addOrder)
 
 
 module.exports = router

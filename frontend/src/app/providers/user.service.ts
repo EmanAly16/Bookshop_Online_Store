@@ -20,7 +20,9 @@ export class UserService {
   loginUser(data:any):Observable<any>{
     return this._http.post(`${this.host}login`, data)
   }
-
+  logout():Observable<any>{
+    return this._http.post(`${this.host}logout`, null)
+  }
   registerAdmin(data:any):Observable<any>{
     return this._http.post(`${this.host}admin`, data)
   }
@@ -28,7 +30,9 @@ export class UserService {
   allUser():Observable<any>{
     return this._http.get(`${this.host}all`)
   }
-
+  deleteUser(id:any):Observable<any>{
+    return this._http.delete(`${this.host}all/${id}`)
+  }
   profile():Observable<any>{
     return this._http.post(`${this.host}me`,null)
   }
@@ -37,6 +41,9 @@ export class UserService {
   }
   singleUser(id:string):Observable<any>{
     return this._http.get(`${this.host}single/${id}`)
+  }
+  buyBook(id:string):Observable<any>{
+    return this._http.post(`${this.host}addOrder/${id}`,null)
   }
 
 }

@@ -208,13 +208,14 @@ class User {
     static addOrder = async(req, res) => {
         try {
 
-            const resid = await bookModel.findOne({ 'title': req.body.name })
+            const resid = await bookModel.findById(req.params.id)
+                //   const resid = await bookModel.findOne({ 'title': req.body.title })
             if (!resid)
                 throw new Error("Not a book")
-                  //  console.log(resid)
-            const user = await userModel.findByIdAndUpdate(req.user._id, { $push: { orders: { $each: [{ "name": req.body.name, "id": resid._id }] } } }, { runValidators: true })
+                    //  console.log(resid)
+            const user = await userModel.findByIdAndUpdate(req.user._id, { $push: { orders: { $each: [{ "title": resid.title, "auther": resid.auther, "description": resid.description, "img": resid.img, "url": resid.url }] } } }, { runValidators: true })
 
-             //console.log(req.user)
+            //console.log(req.user)
             await user.save()
             res.status(200).send({
                 apiStatus: true,

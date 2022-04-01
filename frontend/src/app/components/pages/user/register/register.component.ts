@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/providers/user.service';
 @Component({
   selector: 'app-register',
@@ -16,7 +17,7 @@ export class RegisterComponent implements OnInit {
     password:""
   }
   phoneSpcialError = ""
-  constructor(private _user:UserService) { }
+  constructor(private _user:UserService,public _router:Router) { }
 
 
   ngOnInit(): void {
@@ -33,6 +34,7 @@ export class RegisterComponent implements OnInit {
         },
         ()=>{
           register.resetForm()
+          this._router.navigate(['user/login'])
         }
       )
     }

@@ -1,16 +1,20 @@
 <section style="background-color: #eee;">
     <div class="container py-5">
-        <div class="row  m-2" *ngFor="let item of data.data ;let i =index">
-            <div class="card " style="width: 18rem;">
-                <img [src]=item.img class=" card-img-top " alt="... ">
-                <div class="card-body ">
-                    <h6 class="card-text ">{{item.title}}</h6>
-                    <h6>{{item.auth}} </h6>
-                    <p>{{item.url}}</p>
-                    <p>{{item.description}}</p>
-                    <button class="btn btn-primary" routerLink="../edit/{{item._id}}">edit</button>
-                    <button class="btn btn-sm btn-danger" (click)="deleteBook(item._id,i)">Delete</button>
-
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col  " *ngFor="let item of data.data ;let i =index">
+                <div class="card " style="width: 18rem;">
+                    <img [src]=item.img class=" card-img-top " alt="... ">
+                    <div class="card-body ">
+                        <h6 class="card-text position-absolute start-50 translate-middle">{{item.title}}</h6>
+                        <br>
+                        <p>Author: {{item.auther}} </p>
+                        <p>Description: {{item.description}}</p>
+                        <p><a href="{{item.url}}" *ngIf="_user.userData.role=='admin'">Book URL</a></p>
+                        <p *ngIf="_user.userData.role=='customer'">Book URL : Buy to get the link</p>
+                        <button class="btn btn-sm btn-primary" routerLink="../edit/{{item._id}}" *ngIf="_user.userData.role=='admin'">edit</button>
+                        <button class="btn btn-sm btn-danger" (click)="deleteBook(item._id,i)" *ngIf="_user.userData.role=='admin'">Delete</button>
+                        <button class="btn btn-sm btn-success" (click)="buyBook(item._id)" *ngIf=" _user.userData.role=='customer' ">Buy Book</button>
+                    </div>
                 </div>
             </div>
         </div>

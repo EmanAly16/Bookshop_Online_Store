@@ -10,7 +10,7 @@ export class EditbookComponent implements OnInit {
 
   data:any={}
 
-  constructor(private _book:BookService,private _route:Router, private _router:ActivatedRoute) { }
+  constructor(public _book:BookService,private _route:Router, private _router:ActivatedRoute) { }
   myFile :any = null
 
 
@@ -38,12 +38,14 @@ export class EditbookComponent implements OnInit {
     )}
   }
   ngOnInit(): void {
-
-    console.log(this._book)
-
     this._book.getSingleBook(this._router.snapshot.params['id']).subscribe(
-      data=>this.data=data,
-      (e)=>this._route.navigateByUrl('book/allbook')
+      (res)=>{ console.log(res)
+      //  data=>this.data=data
+      this.data=res
+      this._book.bookData=res.data
+      },
+      (e)=>{this._route.navigateByUrl('book/allbook')},
+      ()=>{ console.log(this._book)}
     )
   }
 }

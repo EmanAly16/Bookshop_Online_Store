@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/providers/user.service';
 import { AuthService } from 'src/app/providers/auth.service';
@@ -10,24 +11,20 @@ import { AuthService } from 'src/app/providers/auth.service';
 export class NavbarComponent implements OnInit {
 
   constructor(public _user:UserService
-    ,private authService:AuthService) { }
+    ,private authService:AuthService,public _route:Router) { }
 
-  logout(){
-    this.authService.logout().subscribe({
-      next:()=>{
-        localStorage.removeItem('appToken')
-      }
-    })
-  }
-
-  // get isLoggedIn(){
-  //   let token = this.authService.getToken()
-  //   if(token)
-  //   return true
-
-  //   return false
-  // }
-
+    logMeOut(){
+      this._user.logout().subscribe(
+        (res)=> console.log(res),
+        ()=>{},
+        ()=>{
+          localStorage.removeItem("appToken")
+          this._user.isLoggedIn=false
+          this._user.userData={name:"",role:""}
+          this._route.navigateByUrl("/")
+        }
+      )
+    }
   ngOnInit(): void {
   }
 

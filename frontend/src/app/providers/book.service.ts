@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BookService {
-  public bookData = {title:""}
+  public bookData = {data:""}
 
   host = "http://localhost:3000/book/"
   constructor(private _http:HttpClient) {}
@@ -29,6 +29,7 @@ export class BookService {
   deleteBook(id:any):Observable<any>{
     return this._http.delete(`${this.host}delet/${id}`)
   }
+
 
 }
 

@@ -10,8 +10,9 @@ import { UserService } from 'src/app/providers/user.service';
 export class LoginComponent implements OnInit {
 
   loginForm = new FormGroup({
-    email:new FormControl('eman53@test.com'),
-    password:new FormControl('12345*')
+    // for test
+    email:new FormControl('tadekod87@maksap.com'),
+    password:new FormControl('123456')
   })
   get email(){ return this.loginForm.get("email")}
   get password(){ return this.loginForm.get("password")}

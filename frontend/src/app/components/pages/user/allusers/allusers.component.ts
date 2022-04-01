@@ -10,7 +10,15 @@ import { Component, OnInit } from '@angular/core';
 export class AllusersComponent implements OnInit {
    data:any={}
   constructor(private _user:UserService, private _route:Router) { }
+  deleteUser(id:any,i:number){
+    this._user.deleteUser(id).subscribe({
+      next:()=>{
+       console.log(this.data)
+        this.data.data.splice(i,1)
 
+      }
+    })
+  }
   ngOnInit(): void {
     this._user.allUser().subscribe(
 

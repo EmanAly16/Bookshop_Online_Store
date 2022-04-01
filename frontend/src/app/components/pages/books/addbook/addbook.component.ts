@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { BookService } from 'src/app/providers/book.service';
@@ -7,14 +8,8 @@ import { BookService } from 'src/app/providers/book.service';
   styleUrls: ['./addbook.component.css']
 })
 export class AddbookComponent implements OnInit {
-  bookData = {
-    title:"",
-    description:"",
-    url:"",
-    img:"",
-    auther:""
-  }
-  constructor(private _book:BookService) { }
+
+  constructor(private _book:BookService,public _router:Router) { }
 
   ngOnInit(): void {
   }
@@ -23,7 +18,13 @@ export class AddbookComponent implements OnInit {
       console.log(register.value)
       this._book.bookAdd(register.value).subscribe(
         data=> {
-          console.log(data)
+          this._book=data.data
+
+          console.log(this._book)
+        },
+        (e)=>{},
+        ()=>{
+          this._router.navigate(['book/allbook'])
         }
       )
     }

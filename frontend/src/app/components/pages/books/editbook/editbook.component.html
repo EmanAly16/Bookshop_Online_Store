@@ -1,9 +1,8 @@
 <h2 class="text-primary text-center my-2">Edit my Book</h2>
 <form #edit="ngForm" (ngSubmit)="bookEdit(edit)">
     <div class=" mb-3 ">
-        <input type="text" class="form-control" name="title" placeholder="title" [(ngModel)]="data.data.title">
+        <input type="text" class="form-control" name="title" placeholder="title" [(ngModel)]="data.data.title" ngModel>
     </div>
-
     <div class=" mb-3 ">
         <input type="text" class="form-control" name="description" placeholder="description" [(ngModel)]="data.data.description" ngModel>
     </div>
@@ -15,12 +14,15 @@
     </div>
     <div class="mb-3">
         <!--   <input type="file" class="form-control" name="img" placeholder="img" [(ngModel)]="data.data.img" ngModel>-->
-        <img src="data.data.img">
-        <input type="file" class="form-control" name="img" [(ngModel)]="data.data.img" (change)="onUploadFile($event)" ngModel>
+        <img [src]="data.data.img">
+        <p>Drop link for new image to edit image</p>
+        <input type="text" class="form-control" name="img" [(ngModel)]="data.data.img" (change)="onUploadFile($event)" ngModel>
         <button (click)="handleUpload()">Upload</button>
 
     </div>
     <div class="mb-3">
         <button class="btn btn-primary">Edit Book</button>
     </div>
+    <!--{{_book.bookData|json}}
+  {{data|json}}-->
 </form>

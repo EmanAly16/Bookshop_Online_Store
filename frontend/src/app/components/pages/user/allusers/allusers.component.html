@@ -1,7 +1,7 @@
 <section style="background-color: #eee;">
     <div class="container py-5">
 
-        <div class="row" *ngFor="let item of data.data">
+        <div class="row" *ngFor="let item of data.data; let i = index">
 
             <div class="col-lg-4">
                 <div class="card mb-4">
@@ -9,7 +9,9 @@
                         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                         <h5 class="my-3">{{item.name}}</h5>
                         <p class="text-muted mb-1">{{item.email}}</p>
-                        <button class="btn btn-primary" routerLink="../single/{{item._id}}">Show</button>
+                        <button class="btn btn-sm btn-primary" routerLink="../single/{{item._id}}">Show</button>
+                        <button class="btn btn-sm btn-danger" (click)="deleteUser(item._id,i)">Delete</button>
+
 
                     </div>
                 </div>

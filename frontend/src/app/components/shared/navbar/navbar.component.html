@@ -2,22 +2,27 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-                <a class="nav-link" aria-current="page" routerLink="/user/login" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="!_user.isLoggedIn">LOGIN</a>
+                <a class="nav-link" aria-current="page" routerLink="/user/login" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="!_user.isLoggedIn">Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" aria-current="page" routerLink="/user/add" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="!_user.isLoggedIn">register</a>
+                <a class="nav-link" aria-current="page" routerLink="/user/add" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="!_user.isLoggedIn">Register</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" aria-current="page" routerLink="/user/me" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="_user.isLoggedIn">profile</a>
+                <a class="nav-link" aria-current="page" routerLink="/user/me" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="_user.isLoggedIn">Profile</a>
             </li>
             <li class="nav-item" *ngIf="  _user.userData.role=='admin'">
-                <a class="nav-link" aria-current="page" routerLink="/user/all" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="_user.isLoggedIn">all users</a>
+                <a class="nav-link" aria-current="page" routerLink="/user/all" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="_user.isLoggedIn">All Users</a>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" routerLink="/book/allbook" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="_user.isLoggedIn">All Books</a>
+            </li>
+            <li class="nav-item" *ngIf="  _user.userData.role=='admin'">
+                <a class="nav-link" aria-current="page" routerLink="/book/add" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="_user.isLoggedIn">Add Book</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" aria-current="page" *ngIf="_user.isLoggedIn">
           {{_user.userData.name}}
-          <button class="btn btn-danger"  routerLink="/" (click)="logout()" *ngIf="_user.isLoggedIn">Logout</button>
+          <button class="btn btn-danger"  routerLink="/" (click)="logMeOut()" *ngIf="_user.isLoggedIn">Logout</button>
         </a>
             </li>
         </ul>

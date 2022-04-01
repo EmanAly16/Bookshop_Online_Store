@@ -45,7 +45,8 @@ class Book {
     static single = async(req, res) => {
         try {
             const _id = req.params.id
-            const book = await bookModel.findOne({ _id, userId: req.user._id })
+                //, userId: req.user._id
+            const book = await bookModel.findOne({ _id })
             res.status(200).send({
                 apiStatus: true,
                 data: book,
@@ -62,7 +63,8 @@ class Book {
     static del = async(req, res) => {
         try {
             const _id = req.params.id
-            const book = await bookModel.findOneAndDelete({ _id, userId: req.user._id })
+                //, userId: req.user._id
+            const book = await bookModel.findOneAndDelete({ _id })
             res.status(200).send({
                 apiStatus: true,
                 data: book,
@@ -78,7 +80,8 @@ class Book {
     }
     static edit = async(req, res) => {
         try {
-            const book = await bookModel.findByIdAndUpdate({ _id: req.params.id, userId: req.user._id }, req.body, { runValidators: true })
+            //, userId: req.user._id
+            const book = await bookModel.findByIdAndUpdate({ _id: req.params.id }, req.body, { runValidators: true })
             res.status(200).send({
                 apiStatus: true,
                 data: book,
@@ -93,7 +96,7 @@ class Book {
         }
     }
     static profileImg = async(req, res) => {
-        req.book.img = req.file.path
+        req.book.img = req.img
         await req.book.save()
         res.status(200).send({
             apiStatus: true,
