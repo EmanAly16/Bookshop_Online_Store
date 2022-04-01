@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm,FormGroup, FormControl  } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/providers/user.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

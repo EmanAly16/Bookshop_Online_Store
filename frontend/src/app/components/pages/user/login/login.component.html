@@ -14,20 +14,20 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="email" id="form3Example3c" class="form-control" formControlName="email" placeholder="email" />
+                                            <input type="email" id="form3Example3c" class="form-control" formControlName="email" placeholder="email" required email ngModel="email" />
                                         </div>
-                                        <!--    <div class="alert alert-danger my-2"
-        *ngIf="email.invalid&& (email.dirty || register.submitted)">
-            <li *ngIf="email.errors?.['required']">* required</li>
-            <li *ngIf="email.errors?.['email']">* Email invalid format</li>
-        </div>-->
+                                        <!--
+                                        <div class="alert alert-danger my-2" *ngIf="email.invalid&& (email.dirty || loginForm.submitted)">
+                                            <li *ngIf="email.errors?.['required']">* required</li>
+                                            <li *ngIf="email.errors?.['email']">* Email invalid format</li>
+                                        </div>-->
                                     </div>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="password" id="form3Example4c" class="form-control" placeholder="password" formControlName="password" />
-                                            <!-- <div class="alert alert-danger my-2" *ngIf="password.invalid&& (password.dirty || register.submitted)">
+                                            <input type="password" id="form3Example4c" class="form-control" placeholder="password" formControlName="password" required minlength="4" ngModel="password" />
+                                            <!-- <div class="alert alert-danger my-2" *ngIf="password.invalid&& (password.dirty || loginForm.submitted)">
                                                 <li *ngIf="password.errors?.['required']">* required</li>
                                                 <li *ngIf="password.errors?.['minlength']">* minimum chars is 6</li>
                                                 <li *ngIf="password.errors?.['maxlength']">* maximum chars is 20</li>
