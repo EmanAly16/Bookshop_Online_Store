@@ -3,7 +3,7 @@ const router = require("express").Router()
 const auth = require("../middleware/auth")
 const authadmin = require("../middleware/authadmin")
 router.post("/add", authadmin, bookController.add)
-router.get("/myBooks", auth, bookController.myBooks)
+    //router.get("/myBooks", auth, bookController.myBooks)
 
 router.get('/allbook', auth, bookController.all)
 

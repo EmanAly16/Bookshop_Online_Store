@@ -12,7 +12,7 @@ router.post("/login", userController.login)
     //router.post("/admin", userController.loginAdmin)
 
 router.post("/logout", auth, userController.logOut)
-router.post("/logoutAll", auth, userController.logOutAll)
+    //router.post("/logoutAll", auth, userController.logOutAll)
 
 router.post("/changePass", auth, userController.changePass)
 
@@ -23,7 +23,7 @@ router.post("/profileImg", auth, upload.single('profile'), userController.profil
 router.get('/all', authadmin, userController.all)
 router.get('/single/:id', authadmin, userController.single)
 router.delete('/all/:id', authadmin, userController.del)
-router.patch('/all/:id', authadmin, userController.edit)
+router.patch('/edit/:id', authadmin, userController.edit)
 
 router.patch('/all', auth, userController.editWithToken)
 
