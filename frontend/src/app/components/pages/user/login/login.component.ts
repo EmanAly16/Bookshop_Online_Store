@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm,FormGroup, FormControl  } from '@angular/forms';
+import { FormGroup, FormControl  } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/providers/user.service';
 
@@ -8,10 +8,10 @@ import { UserService } from 'src/app/providers/user.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
 
+export class LoginComponent implements OnInit {
+  erdata=false
   loginForm = new FormGroup({
-    // for test
     email:new FormControl('tadekod87@maksap.com'),
     password:new FormControl('123456')
   })
@@ -28,7 +28,9 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('appToken',res.data.token)
           this._user.userData=res.data.user
         },
-        (e)=>{},
+        (e)=>{
+          this.erdata=true
+        },
         ()=>{
           this._user.isLoggedIn=true
            this._router.navigate(['user/me'])
